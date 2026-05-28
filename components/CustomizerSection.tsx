@@ -105,7 +105,7 @@ export default function CustomizerSection() {
             whileHover={{ scale: 1.02 }}
             transition={{ duration: 0.4 }}
             className="relative flex-shrink-0"
-            style={{ width: "300px", height: "400px" }}
+            style={{ width: "420px", height: "520px" }}
           >
             {/* Ambient back-glow */}
             <div

@@ -77,10 +77,10 @@ function GarmentCard({
       }}
       transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
       className="absolute cursor-pointer select-none"
-      style={{ width: "290px" }}
+      style={{ width: "460px" }}
     >
       {/* Image container — transparent background, glow via filter */}
-      <div className="relative" style={{ width: "290px", height: "380px" }}>
+      <div className="relative" style={{ width: "460px", height: "560px" }}>
         {/* Back-glow plane (behind image) */}
         <motion.div
           animate={{
@@ -313,7 +313,7 @@ export default function HeroSection() {
       {/* Cards wrapper */}
       <div
         className="relative flex items-center justify-center w-full"
-        style={{ height: "520px", marginTop: "60px" }}
+        style={{ height: "720px", marginTop: "40px" }}
       >
         {garments.map((g, idx) => (
           <GarmentCard

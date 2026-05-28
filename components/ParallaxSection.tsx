@@ -109,12 +109,12 @@ function ProductVisual({ progress }: { progress: MotionValue<number> }) {
         >
           <div
             style={{
-              width: "440px",
-              height: "520px",
+              width: "600px",
+              height: "700px",
               borderRadius: "50%",
               background:
                 "radial-gradient(ellipse at center, rgba(255,0,51,0.38) 0%, rgba(255,0,51,0.1) 45%, transparent 70%)",
-              filter: "blur(24px)",
+              filter: "blur(28px)",
             }}
           />
         </motion.div>
@@ -125,11 +125,11 @@ function ProductVisual({ progress }: { progress: MotionValue<number> }) {
           src="/jacket-black.png"
           alt="adidas Chile 20 Black Jacket"
           style={{
-            width: "340px",
-            height: "420px",
+            width: "500px",
+            height: "620px",
             objectFit: "contain",
             filter:
-              "drop-shadow(0 0 40px rgba(255,0,51,0.55)) drop-shadow(0 0 80px rgba(255,0,51,0.2))",
+              "drop-shadow(0 0 50px rgba(255,0,51,0.6)) drop-shadow(0 0 100px rgba(255,0,51,0.25))",
             position: "relative",
             zIndex: 2,
           }}
