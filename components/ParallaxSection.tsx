@@ -125,7 +125,7 @@ function ProductVisual({ progress }: { progress: MotionValue<number> }) {
           src="/jacket-red.png"
           alt="adidas Chile 20 Red Jacket"
           style={{
-            width: "min(700px, 46vw)",
+            width: "min(420px, 30vw)",
             height: "auto",
             objectFit: "contain",
             filter:
