@@ -4,10 +4,22 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform, useSpring, MotionValue } from "framer-motion";
 
 const copyLines = [
-  { text: "Born from\nthe Streets.", sub: "Street-tested architecture" },
-  { text: "Engineered\nfor Motion.", sub: "Zero-gravity insulation system" },
-  { text: "Worn by\nthe Bold.", sub: "Limited to 2,000 units worldwide" },
-  { text: "Chile 20\nForever.", sub: "SS2026 · FINAL CHAPTER" },
+  {
+    text: "Lightweight\nTricot Fabric.",
+    sub: "Breathable woven performance shell with a premium wet-look finish",
+  },
+  {
+    text: "Applied\n3-Stripes.",
+    sub: "Iconic Adidas heritage detailing applied to both sleeves",
+  },
+  {
+    text: "Secure Zipper\nPockets.",
+    sub: "Two side-entry zip pockets with metal pullers and inner mesh lining",
+  },
+  {
+    text: "Chile 20\nForever.",
+    sub: "Adidas Originals × Foot Locker · SS2026 · Final Chapter",
+  },
 ];
 
 function CopyPanel({
@@ -40,20 +52,38 @@ function CopyPanel({
               boxShadow: "0 0 8px rgba(255,0,51,0.8)",
             }}
           />
-          <span className="text-[#FF0033] text-[10px] font-mono tracking-[0.4em] uppercase">
-            FEATURE {String(index + 1).padStart(2, "0")}
+          <span
+            style={{
+              fontSize: "10px",
+              fontFamily: "monospace",
+              letterSpacing: "0.4em",
+              textTransform: "uppercase",
+              color: "#FF0033",
+            }}
+          >
+            DETAIL {String(index + 1).padStart(2, "0")}
           </span>
         </div>
         <h2
-          className="text-5xl md:text-7xl font-black uppercase leading-none text-white"
+          className="font-black uppercase leading-none text-white"
           style={{
-            textShadow: "0 0 40px rgba(255,0,51,0.2)",
+            fontSize: "clamp(40px, 7vw, 80px)",
+            textShadow: "0 0 40px rgba(255,0,51,0.18)",
             whiteSpace: "pre-line",
           }}
         >
           {line.text}
         </h2>
-        <p className="text-white/40 text-sm tracking-[0.2em] uppercase font-mono">
+        <p
+          style={{
+            fontSize: "13px",
+            color: "rgba(255,255,255,0.38)",
+            letterSpacing: "0.18em",
+            textTransform: "uppercase",
+            fontFamily: "monospace",
+            lineHeight: 1.6,
+          }}
+        >
           {line.sub}
         </p>
       </div>
@@ -62,8 +92,9 @@ function CopyPanel({
 }
 
 function ProductVisual({ progress }: { progress: MotionValue<number> }) {
-  const scale = useTransform(progress, [0, 1], [0.88, 1.3]);
+  const scale = useTransform(progress, [0, 1], [0.88, 1.32]);
   const opacity = useTransform(progress, [0, 0.06, 0.94, 1], [0, 1, 1, 0]);
+  const glowOpacity = useTransform(progress, [0, 0.5, 1], [0.15, 0.45, 0.6]);
 
   return (
     <motion.div
@@ -71,122 +102,53 @@ function ProductVisual({ progress }: { progress: MotionValue<number> }) {
       className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none"
     >
       <div className="relative flex items-center justify-center">
-        {/* Background glow */}
-        <div
+
+        {/* Back glow — intensifies as scroll progresses */}
+        <motion.div
+          style={{ opacity: glowOpacity, position: "absolute" }}
+        >
+          <div
+            style={{
+              width: "440px",
+              height: "520px",
+              borderRadius: "50%",
+              background:
+                "radial-gradient(ellipse at center, rgba(255,0,51,0.38) 0%, rgba(255,0,51,0.1) 45%, transparent 70%)",
+              filter: "blur(24px)",
+            }}
+          />
+        </motion.div>
+
+        {/* Real jacket image — black/hero variant */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/jacket-black.png"
+          alt="adidas Chile 20 Black Jacket"
           style={{
-            position: "absolute",
-            width: "360px",
-            height: "440px",
-            background: "radial-gradient(ellipse at center, rgba(255,0,51,0.25) 0%, transparent 65%)",
-            borderRadius: "50%",
+            width: "340px",
+            height: "420px",
+            objectFit: "contain",
+            filter:
+              "drop-shadow(0 0 40px rgba(255,0,51,0.55)) drop-shadow(0 0 80px rgba(255,0,51,0.2))",
+            position: "relative",
+            zIndex: 2,
           }}
+          draggable={false}
         />
 
-        {/* Jacket body */}
-        <div
-          style={{
-            width: "240px",
-            height: "300px",
-            background: "linear-gradient(145deg, #1a0000 0%, #330000 30%, #200000 60%, #0d0000 100%)",
-            clipPath: "polygon(10% 0%, 90% 0%, 100% 12%, 100% 100%, 75% 100%, 75% 80%, 25% 80%, 25% 100%, 0% 100%, 0% 12%)",
-            boxShadow: "0 0 50px rgba(255,0,51,0.4), inset 0 0 60px rgba(255,0,51,0.06)",
-            border: "1px solid rgba(255,0,51,0.3)",
-            position: "relative",
-          }}
-        >
-          {/* Stripe texture */}
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              background:
-                "repeating-linear-gradient(-50deg, transparent, transparent 18px, rgba(255,0,51,0.07) 18px, rgba(255,0,51,0.07) 20px)",
-            }}
-          />
-          {/* Zip line */}
-          <div
-            style={{
-              position: "absolute",
-              left: "50%",
-              top: 0,
-              bottom: 0,
-              width: "1px",
-              background: "linear-gradient(180deg, rgba(255,0,51,0.8), rgba(255,0,51,0.1))",
-              transform: "translateX(-50%)",
-            }}
-          />
-          {/* Chest logo text */}
-          <div
-            style={{
-              position: "absolute",
-              top: "28px",
-              left: "50%",
-              transform: "translateX(-50%)",
-              fontSize: "10px",
-              fontWeight: 900,
-              letterSpacing: "0.4em",
-              textAlign: "center",
-              textTransform: "uppercase",
-              color: "rgba(255,0,51,0.65)",
-              lineHeight: 1.4,
-              whiteSpace: "nowrap",
-            }}
-          >
-            CHILE<br />20
-          </div>
-          {/* Three-stripe shoulders — both sides */}
-          {[0, 1].map((side) => (
-            <div
-              key={side}
-              style={{
-                position: "absolute",
-                top: "12px",
-                ...(side === 0 ? { left: "12px" } : { right: "12px" }),
-                display: "flex",
-                flexDirection: "column",
-                gap: "3px",
-              }}
-            >
-              {[28, 22, 16].map((w, j) => (
-                <div
-                  key={j}
-                  style={{
-                    width: `${w}px`,
-                    height: "2px",
-                    background: `rgba(255,0,51,${0.7 - j * 0.1})`,
-                  }}
-                />
-              ))}
-            </div>
-          ))}
-          {/* Pockets */}
-          {[0, 1].map((side) => (
-            <div
-              key={side}
-              style={{
-                position: "absolute",
-                bottom: "72px",
-                ...(side === 0 ? { left: "16px" } : { right: "16px" }),
-                width: "54px",
-                height: "34px",
-                border: "1px solid rgba(255,0,51,0.3)",
-                background: "rgba(255,0,51,0.04)",
-              }}
-            />
-          ))}
-        </div>
-
-        {/* Floor glow shadow */}
+        {/* Floor glow */}
         <div
           style={{
             position: "absolute",
-            bottom: "-24px",
+            bottom: "-20px",
             left: "50%",
             transform: "translateX(-50%)",
-            width: "200px",
-            height: "40px",
-            background: "radial-gradient(ellipse at center, rgba(255,0,51,0.5) 0%, transparent 70%)",
-            filter: "blur(10px)",
+            width: "240px",
+            height: "48px",
+            background:
+              "radial-gradient(ellipse at center, rgba(255,0,51,0.55) 0%, transparent 70%)",
+            filter: "blur(14px)",
+            zIndex: 1,
           }}
         />
 
@@ -195,11 +157,11 @@ function ProductVisual({ progress }: { progress: MotionValue<number> }) {
           <motion.div
             key={i}
             animate={{ rotate: [deg, deg + 360] }}
-            transition={{ duration: 20 + i * 4, repeat: Infinity, ease: "linear" }}
+            transition={{ duration: 22 + i * 5, repeat: Infinity, ease: "linear" }}
             style={{
               position: "absolute",
-              width: "320px",
-              height: "320px",
+              width: "360px",
+              height: "360px",
               transformOrigin: "center",
             }}
           >
@@ -213,8 +175,8 @@ function ProductVisual({ progress }: { progress: MotionValue<number> }) {
                 height: "5px",
                 borderRadius: "50%",
                 background: "#FF0033",
-                opacity: 0.5,
-                boxShadow: "0 0 8px #FF0033",
+                opacity: 0.45,
+                boxShadow: "0 0 10px #FF0033",
               }}
             />
           </motion.div>
@@ -246,9 +208,7 @@ function ProgressBar({ progress }: { progress: MotionValue<number> }) {
           }}
         />
       </motion.div>
-      <motion.div
-        style={{ top: dotTop, position: "absolute", left: "-3px" }}
-      >
+      <motion.div style={{ top: dotTop, position: "absolute", left: "-3px" }}>
         <div
           style={{
             width: "7px",
@@ -286,13 +246,13 @@ export default function ParallaxSection() {
     <section ref={containerRef} className="relative" style={{ height: "500vh" }}>
       <div className="sticky top-0 h-screen overflow-hidden bg-[#0B0B0B]">
 
-        {/* ── BG LAYER: kinetic typography ── */}
+        {/* ── BG LAYER: kinetic Adidas typography ── */}
         <motion.div
           style={{ opacity: bgOpacity, scale: bgScale }}
           className="absolute inset-0 flex flex-col justify-center items-center overflow-hidden pointer-events-none select-none"
         >
           <motion.div style={{ x: bgX1 }} className="flex whitespace-nowrap">
-            {Array(6).fill("CHILE 20 · ").map((t, i) => (
+            {Array(5).fill("ADIDAS ORIGINALS · CHILE 20 · ").map((t, i) => (
               <span
                 key={i}
                 style={{
@@ -300,7 +260,7 @@ export default function ParallaxSection() {
                   fontWeight: 900,
                   letterSpacing: "-0.04em",
                   textTransform: "uppercase",
-                  color: "rgba(255,255,255,0.035)",
+                  color: "rgba(255,255,255,0.032)",
                   paddingRight: "2rem",
                   whiteSpace: "nowrap",
                 }}
@@ -310,7 +270,7 @@ export default function ParallaxSection() {
             ))}
           </motion.div>
           <motion.div style={{ x: bgX2 }} className="flex whitespace-nowrap mt-1">
-            {Array(6).fill("LIMITED EDITION · SS2026 · ").map((t, i) => (
+            {Array(5).fill("3-STRIPES · TRICOT · FOOT LOCKER · ").map((t, i) => (
               <span
                 key={i}
                 style={{
@@ -318,7 +278,7 @@ export default function ParallaxSection() {
                   fontWeight: 900,
                   letterSpacing: "-0.04em",
                   textTransform: "uppercase",
-                  color: "rgba(255,255,255,0.022)",
+                  color: "rgba(255,255,255,0.02)",
                   paddingRight: "2rem",
                   whiteSpace: "nowrap",
                 }}
@@ -328,7 +288,7 @@ export default function ParallaxSection() {
             ))}
           </motion.div>
           <motion.div style={{ x: bgX1 }} className="flex whitespace-nowrap mt-1">
-            {Array(6).fill("BORN FROM THE STREETS · ").map((t, i) => (
+            {Array(5).fill("BORN FROM THE STREETS · ").map((t, i) => (
               <span
                 key={i}
                 style={{
@@ -336,7 +296,7 @@ export default function ParallaxSection() {
                   fontWeight: 900,
                   letterSpacing: "-0.04em",
                   textTransform: "uppercase",
-                  color: "rgba(255,0,51,0.025)",
+                  color: "rgba(255,0,51,0.024)",
                   paddingRight: "2rem",
                   whiteSpace: "nowrap",
                 }}
@@ -347,7 +307,7 @@ export default function ParallaxSection() {
           </motion.div>
         </motion.div>
 
-        {/* ── MID LAYER: product visual ── */}
+        {/* ── MID LAYER: real product image ── */}
         <ProductVisual progress={progress} />
 
         {/* ── FOREGROUND LAYER: copy panels ── */}
@@ -358,9 +318,7 @@ export default function ParallaxSection() {
         </div>
 
         {/* Left measurement ticks */}
-        <div
-          className="absolute left-6 top-0 bottom-0 flex flex-col justify-between py-16 z-30 pointer-events-none"
-        >
+        <div className="absolute left-6 top-0 bottom-0 flex flex-col justify-between py-16 z-30 pointer-events-none">
           {Array(9).fill(null).map((_, i) => (
             <div key={i} className="flex items-center gap-2">
               <div
@@ -371,10 +329,7 @@ export default function ParallaxSection() {
                 }}
               />
               {i % 4 === 0 && (
-                <span
-                  className="font-mono"
-                  style={{ fontSize: "8px", color: "rgba(255,255,255,0.2)" }}
-                >
+                <span style={{ fontSize: "8px", fontFamily: "monospace", color: "rgba(255,255,255,0.2)" }}>
                   {String(i * 12).padStart(2, "0")}
                 </span>
               )}
@@ -388,11 +343,8 @@ export default function ParallaxSection() {
         {/* Bottom label */}
         <div className="absolute bottom-6 left-0 right-0 flex items-center justify-center gap-6 z-20 pointer-events-none">
           <div className="h-px w-16" style={{ background: "rgba(255,255,255,0.08)" }} />
-          <span
-            className="font-mono tracking-[0.5em] uppercase"
-            style={{ fontSize: "9px", color: "rgba(255,255,255,0.18)" }}
-          >
-            CHILE 20 · SS2026 · CINEMATIC SERIES
+          <span style={{ fontSize: "9px", fontFamily: "monospace", letterSpacing: "0.45em", textTransform: "uppercase", color: "rgba(255,255,255,0.18)" }}>
+            ADIDAS ORIGINALS · FOOT LOCKER · SS2026
           </span>
           <div className="h-px w-16" style={{ background: "rgba(255,255,255,0.08)" }} />
         </div>
