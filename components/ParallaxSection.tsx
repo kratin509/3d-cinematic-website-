@@ -92,9 +92,9 @@ function CopyPanel({
 }
 
 function ProductVisual({ progress }: { progress: MotionValue<number> }) {
-  const scale = useTransform(progress, [0, 1], [0.88, 1.32]);
-  const opacity = useTransform(progress, [0, 0.06, 0.94, 1], [0, 1, 1, 0]);
-  const glowOpacity = useTransform(progress, [0, 0.5, 1], [0.15, 0.45, 0.6]);
+  const scale = useTransform(progress, [0, 1], [0.95, 1.28]);
+  const opacity = useTransform(progress, [0, 0.04, 0.94, 1], [0, 1, 1, 0]);
+  const glowOpacity = useTransform(progress, [0, 0.5, 1], [0.25, 0.55, 0.7]);
 
   return (
     <motion.div
@@ -103,33 +103,33 @@ function ProductVisual({ progress }: { progress: MotionValue<number> }) {
     >
       <div className="relative flex items-center justify-center">
 
-        {/* Back glow — intensifies as scroll progresses */}
+        {/* Back glow */}
         <motion.div
           style={{ opacity: glowOpacity, position: "absolute" }}
         >
           <div
             style={{
-              width: "600px",
-              height: "700px",
+              width: "820px",
+              height: "900px",
               borderRadius: "50%",
               background:
-                "radial-gradient(ellipse at center, rgba(255,0,51,0.38) 0%, rgba(255,0,51,0.1) 45%, transparent 70%)",
-              filter: "blur(28px)",
+                "radial-gradient(ellipse at center, rgba(255,0,51,0.42) 0%, rgba(255,0,51,0.12) 45%, transparent 70%)",
+              filter: "blur(40px)",
             }}
           />
         </motion.div>
 
-        {/* Real jacket image — black/hero variant */}
+        {/* Real jacket image — red variant */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/jacket-black.png"
-          alt="adidas Chile 20 Black Jacket"
+          src="/jacket-red.png"
+          alt="adidas Chile 20 Red Jacket"
           style={{
-            width: "500px",
-            height: "620px",
+            width: "min(700px, 46vw)",
+            height: "auto",
             objectFit: "contain",
             filter:
-              "drop-shadow(0 0 50px rgba(255,0,51,0.6)) drop-shadow(0 0 100px rgba(255,0,51,0.25))",
+              "drop-shadow(0 0 60px rgba(255,0,51,0.75)) drop-shadow(0 0 120px rgba(255,0,51,0.3))",
             position: "relative",
             zIndex: 2,
           }}
@@ -140,14 +140,14 @@ function ProductVisual({ progress }: { progress: MotionValue<number> }) {
         <div
           style={{
             position: "absolute",
-            bottom: "-20px",
+            bottom: "-30px",
             left: "50%",
             transform: "translateX(-50%)",
-            width: "240px",
-            height: "48px",
+            width: "420px",
+            height: "70px",
             background:
-              "radial-gradient(ellipse at center, rgba(255,0,51,0.55) 0%, transparent 70%)",
-            filter: "blur(14px)",
+              "radial-gradient(ellipse at center, rgba(255,0,51,0.65) 0%, transparent 70%)",
+            filter: "blur(20px)",
             zIndex: 1,
           }}
         />
@@ -160,8 +160,8 @@ function ProductVisual({ progress }: { progress: MotionValue<number> }) {
             transition={{ duration: 22 + i * 5, repeat: Infinity, ease: "linear" }}
             style={{
               position: "absolute",
-              width: "360px",
-              height: "360px",
+              width: "560px",
+              height: "560px",
               transformOrigin: "center",
             }}
           >
